@@ -1,0 +1,49 @@
+| <!doctype html>
+html dir="ltr" lang="en"
+  head
+    meta charset="utf-8"
+    title [
+      x-ng-bind="$detour.current.name + ' - agt.detour/lazy-routing'"
+      ] agt.detour/lazy-routing in Sinatra/Slim
+
+    link [href="/css/bootstrap.min.css" media="screen" rel="stylesheet"]
+    base [href="/"]
+
+    script [src="/js/lib/angular.js"]
+    script [data-main="js/main" src="/js/lib/requirejs.js"]
+
+  body
+    javascript:
+      function findById(a, id) {
+        for (var i = 0; i < a.length; i++) {
+          if (a[i].id == id) return a[i];
+        }
+      }
+
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          <a class="brand" href x-ng-click="$detour.transitionTo('home')">
+            | agt.detour with Sinatra/Slim
+          </a>
+
+          ul.nav
+            li [x-ng-class="{ active: $detour.includes('contacts') }"]
+              a [href="/contacts"] Contacts
+
+            li [
+              x-ng-show="$detour.getState('about')"
+              x-ng-class="{ active: $detour.includes('about') }"
+              ]
+              a [href="#/about"] About
+
+          p.navbar-text.pull-right [x-ui-view="hint"]
+
+    <div x-ui-view class="container" style="margin-top:60px"></div>
+
+    hr/
+
+    pre
+      |
+        $detour = {{$detour.current.name}}
+        $stateParams = {{$stateParams}}

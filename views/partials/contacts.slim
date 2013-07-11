@@ -1,0 +1,16 @@
+.row
+  .span3
+    .pa-sidebar.well.well-small
+      ul.nav.nav-list
+        li [x-ng-class="{ active: $detour.includes('contacts.list') }"]
+          a [href="/contacts"] All Contacts
+        li.nav-header Top Contacts
+        li [
+          x-ng-repeat="contact in contacts | limitTo:2"
+          x-ng-class="{ active: $detour.includes('contacts.detail') && $stateParams.contactId == contact.id }"
+          ]
+          a [href="/contacts/{{contact.id}}"] {{contact.name}}
+      hr/
+      button.btn [x-ng-click="goToRandom()"] Show random contact
+      <div ui-view="menu"/>
+<div x-ui-view x-ng-animate="{enter:'fade-enter'}" class="span9"/>

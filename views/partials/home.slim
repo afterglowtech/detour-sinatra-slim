@@ -1,0 +1,20 @@
+p.lead Welcome to the agt.detour lazy routing sample
+p Use the menu above to navigate
+p
+  ' Look at
+  a> [href="/c?id=1"] Alice
+  ' or
+  a> [href="/user/42"] Bob
+  ' to see a URL with a redirect in action.
+p
+  ' Just don't
+  a [href="/getLost"] get lost!
+button [
+  x-ng-show="$detour.getState('about')"
+  x-ng-click="removeAbout()"
+  ] Click here to remove the "about" state
+button [
+  x-ng-show="!$detour.getState('about')"
+  x-ng-click="addAbout()"
+  ] Click here to add the "about" state
+
