@@ -7,7 +7,6 @@ module Xover
   class DemoApp < Sinatra::Base
 
     register Sinatra::Reloader
-    register Sinatra::Twitter::Bootstrap::Assets
 
     configure do
       set :slim, pretty: true
